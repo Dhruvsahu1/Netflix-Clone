@@ -13,16 +13,15 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        navigate('/');
-      } else {
-        navigate('/login');
-      }
-    });
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      navigate('/login');  
+    }
+  });
 
-    return () => unsubscribe(); 
-  }, [navigate]); 
+  return () => unsubscribe();
+}, [navigate]);
+
 
   return (
     <div>
